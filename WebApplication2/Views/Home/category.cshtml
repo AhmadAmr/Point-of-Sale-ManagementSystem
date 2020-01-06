@@ -1,0 +1,111 @@
+﻿@model WebApplication2.Models.catmodel
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+    @Html.AntiForgeryToken()
+
+
+    <div class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+
+                <div id="messages"></div>
+
+                <button class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Add Category
+                <div class="ripple-container">
+                    </div>
+                </button>
+
+                <div class="row">
+                    <div class="col">
+@using (Html.BeginForm())
+{
+                        <div class="collapse multi-collapse " id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <div class="form-group">
+                                    <label for="brand_name">Category Name</label>
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Category name", @autocomplete = "off", @required = "true" } })
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="active">Status</label>
+                                    @Html.DropDownListFor(Model => Model.status, new List<SelectListItem>
+                                    {
+                                    new SelectListItem{ Text="Active",   Value = "1" },
+                                    new SelectListItem{ Text="InActive", Value = "2" },
+
+                                    }, new { @class = "form-control" })
+                                    <button class="btn btn-default" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="true" aria-controls="multiCollapseExample1">Close<div class="ripple-container"></div></button>
+                                    <button type="submit" class="btn btn-primary" id="save">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+}
+                    </div>
+
+                    <br> <br>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Manage Category</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="manageTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="col-sm-12">
+                                    <table id="manageTable" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="manageTable_info" style="width: 1067px;">
+                                        <thead>
+                                            <tr role="row"><th class="sorting" tabindex="0" aria-controls="manageTable" rowspan="1" colspan="1" aria-label="Category name: activate to sort column ascending" style="width: 422px;">Category name</th><th class="sorting" tabindex="0" aria-controls="manageTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 237px;">Status</th><th class="sorting" tabindex="0" aria-controls="manageTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 292px;">Action</th></tr>
+                                        </thead>
+                                        <tbody>
+                                        @{
+
+                                            foreach (var item in Model.getdata)
+                                            {
+                                                using (Html.BeginForm("Delete", "Home", new { id = item.category_id }))
+                                                {
+
+                                                    <tr role="row">
+                                                 
+                                                 <td>@Html.DisplayFor(Model => item.Name)</td>
+                                                
+                                                 @if (item.status == 1)
+                                                 {
+                                                    <td>Active</td>
+                                                 }
+                                                 else
+                                                 {
+                                                 <td>InActive</td>
+                                                 }
+                                                    <td>
+                                                        <button class="btn btn-primary" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record with ID = @item.category_id');" >delete</button>
+                                                       @*<button type="submit" class="btn btn-primary">edit</button>*@
+                                                    </td>
+                                                   
+                                                 
+                                                </tr>
+
+                                                    }
+                                                }
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- col-md-12 -->
+   
+            </div>
+        </div>
+    </div>
+    <!--content-->
+
+    

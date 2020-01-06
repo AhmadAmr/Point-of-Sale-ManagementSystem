@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         
+        
+        <title>Bootply snippet - Bootstrap Bootstrap body auto padding remove after open modal</title>
+        <meta name="generator" content="Bootply">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="Bootstrap Bootstrap body auto padding remove after open modal example.">
+        <link href="./bootstrap.min.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="apple-touch-icon" href="https://www.bootply.com/bootstrap/img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://www.bootply.com/bootstrap/img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://www.bootply.com/bootstrap/img/apple-touch-icon-114x114.png">
+
+
+
+
+
+<link href="./theme.css" type="text/css" rel="stylesheet">
+
+
+
+        <!-- CSS code from Bootply.com editor -->
+        
+        <style type="text/css">
+            body.modal-open { padding-right: 15px !important; }
+        </style>
+    </head>
+    
+    <!-- HTML code from Bootply.com editor -->
+    
+    <body class="">
+        
+        <!-- Fixed navbar -->
+
+    <nav class="navbar navbar-light bg-faded navbar-fixed-top">
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#TopNavbar">☰</button>
+        <div class="collapse navbar-toggleable-xs" id="TopNavbar">
+            <a class="navbar-brand" href="https://www.bootply.com/render/DQkgRfy6ZA#">Bootstrap body auto padding remove after open modal</a>
+
+            <ul class="nav navbar-nav  pull-right">
+                <li class="nav-item">
+                 </li><li class="nav-item">
+<a href="https://www.bootply.com/render/DQkgRfy6ZA#" class="btn btn-default" id="openBtn">Open modal</a>
+                </li>
+ 
+                                    </ul> 
+        </div>
+    </nav>
+
+
+
+
+<div class="container">
+Bootstrap body auto padding remove after open modal
+      </div>
+<a href="https://www.bootply.com/render/DQkgRfy6ZA#" class="btn btn-default" id="openBtn">Open modal</a>
+
+<div id="modal-content" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Modal header</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <input type="text" id="txtname">
+                </p>
+            </div>
+            <div class="modal-footer"> 
+                <a href="https://www.bootply.com/render/DQkgRfy6ZA#" class="btn" data-dismiss="modal">Close</a>
+                 <a href="https://www.bootply.com/render/DQkgRfy6ZA#" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <script async="" src="./analytics.js.download"></script><script type="text/javascript" src="./jquery.min.js(1).download"></script>
+
+<script type="text/javascript" src="./popper.min.js.download"></script>
+        <script type="text/javascript" src="./bootstrap.min.js(1).download"></script>
+
+
+
+
+
+
+        
+        <!-- JavaScript jQuery code from Bootply.com editor  -->
+        
+        <script type="text/javascript">
+        
+        $(document).ready(function() {
+        
+            // set focus when modal is opened
+$('#modal-content').on('shown.bs.modal', function () {
+    $("#txtname").focus();
+});
+
+// show the modal onload
+$('#modal-content').modal({
+    show: true
+});
+
+// everytime the button is pushed, open the modal, and trigger the shown.bs.modal event
+$('#openBtn').click(function () {
+    $('#modal-content').modal({
+        show: true
+    });
+});
+        
+        });
+        
+        </script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-40413119-1', 'bootply.com');
+          ga('send', 'pageview');
+        </script>
+        
+        
+    
+</body></html>
