@@ -1,1 +1,338 @@
+USE [master]
+GO
+/****** Object:  Database [cms]    Script Date: 1/15/2020 12:42:20 AM ******/
+CREATE DATABASE [cms]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'cms', FILENAME = N'E:\cms.mdf' , SIZE = 3264KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'cms_log', FILENAME = N'E:\cms_log.ldf' , SIZE = 504KB , MAXSIZE = UNLIMITED, FILEGROWTH = 10%)
+GO
+ALTER DATABASE [cms] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [cms].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [cms] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [cms] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [cms] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [cms] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [cms] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [cms] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [cms] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [cms] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [cms] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [cms] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [cms] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [cms] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [cms] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [cms] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [cms] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [cms] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [cms] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [cms] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [cms] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [cms] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [cms] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [cms] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [cms] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [cms] SET  MULTI_USER 
+GO
+ALTER DATABASE [cms] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [cms] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [cms] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [cms] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [cms] SET DELAYED_DURABILITY = DISABLED 
+GO
+USE [cms]
+GO
+/****** Object:  Table [dbo].[category]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[category](
+	[category_id] [int] IDENTITY(1,1) NOT NULL,
+	[category_name] [varchar](40) NULL,
+	[status] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[category_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Mobile]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Mobile](
+	[CATID] [int] IDENTITY(1,1) NOT NULL,
+	[CATNAMEName] [varchar](50) NULL,
+	[MobileIMEno] [varchar](16) NULL,
+	[MobileManufactured] [varchar](50) NULL,
+	[Mobileprice] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[CATID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Mobiledata]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Mobiledata](
+	[MobileID] [int] IDENTITY(1,1) NOT NULL,
+	[MobileName] [varchar](50) NULL,
+	[MobileIMEno] [varchar](16) NULL,
+	[MobileManufactured] [varchar](50) NULL,
+	[Mobileprice] [decimal](18, 0) NULL,
+ CONSTRAINT [PK_Mobiledata] PRIMARY KEY CLUSTERED 
+(
+	[MobileID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[product]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[product](
+	[product_id] [int] IDENTITY(1,1) NOT NULL,
+	[product_name] [varchar](40) NULL,
+	[product_price] [money] NULL,
+	[product_status] [tinyint] NULL,
+	[product_quantity] [int] NULL,
+	[product_cat_id] [int] NULL,
+	[product_store_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[product_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[store]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[store](
+	[store_id] [int] IDENTITY(1,1) NOT NULL,
+	[store_name] [varchar](40) NULL,
+	[store_status] [tinyint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[store_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tables]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tables](
+	[table_id] [int] IDENTITY(1,1) NOT NULL,
+	[table_name] [varchar](40) NULL,
+	[table_status] [tinyint] NULL,
+	[table_capacity] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[table_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[users]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[users](
+	[user_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_name] [varchar](40) NULL,
+	[user_password] [varchar](40) NULL,
+	[user_phone] [int] NULL,
+	[user_gender] [varchar](5) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[user_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  StoredProcedure [dbo].[get_category]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[get_category]
+as
+select r.category_name as 'catname',r.status as 'status'  from category r 
+GO
+/****** Object:  StoredProcedure [dbo].[get_category_product]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[get_category_product]
+as
+select r.category_name as 'catname' from category r 
+GO
+/****** Object:  StoredProcedure [dbo].[st_delete_category]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[st_delete_category]
+@catID int
+as
+Delete from category where category_id = @catID
+GO
+/****** Object:  StoredProcedure [dbo].[st_getstore]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[st_getstore]
+as
+select r.store_name as 'catname',r.store_status as 'status'  from store r 
+GO
+/****** Object:  StoredProcedure [dbo].[st_getstore_product]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[st_getstore_product]
+as
+select r.store_name as 'catname' from store r 
+GO
+/****** Object:  StoredProcedure [dbo].[st_gettable]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[st_gettable]
+as
+select r.table_name as 'tname',r.table_status as 'status' ,r.table_capacity as 'Capacity'  from tables r 
+GO
+/****** Object:  StoredProcedure [dbo].[st_insertproduct]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[st_insertproduct]
+@name varchar(40),
+@price money,
+@status tinyint,
+@quantity int,
+@catid int,
+@storeid int
+as
+insert into product values (@name,@price,@status,@quantity,@catid,@storeid)
+GO
+/****** Object:  StoredProcedure [dbo].[st_insertStore]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create Procedure [dbo].[st_insertStore]
+@name varchar(40),
+@status tinyint
+as
+insert into store values (@name,@status)
+GO
+/****** Object:  StoredProcedure [dbo].[st_inserttable]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE Procedure [dbo].[st_inserttable]
+@name varchar(40),
+@status tinyint,
+@capacity int
+as
+insert into tables values (@name,@status,@capacity)
+GO
+/****** Object:  StoredProcedure [dbo].[st_insetCategory]    Script Date: 1/15/2020 12:42:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[st_insetCategory]
+@name varchar(40),
+@status tinyint 
+as 
+insert into category values (@name,@status)
+GO
+USE [master]
+GO
+ALTER DATABASE [cms] SET  READ_WRITE 
+GO
 
