@@ -1,3 +1,5 @@
 This project Restaurant Management System is developed with .NET MVC 5 , SQL SERVER ,BOOTSTRAP,JQuary as a web application. This system contains the order management, point of sale by orders, restaurant table managementand restaurant billing software too
-
+INSTALL 
+EXCUTE THE SQL File into sql server 
+Run the application on VS 
 
